@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>POTVX_IND | Official Platform</title>
+<style>
+:root{--bg:#0b1020;--panel:#131c31;--panel2:#1a2740;--text:#f5f7fb;--muted:#aab6ca;--accent:#72e0c1;--line:#2a3852}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Arial, sans-serif;line-height:1.5}
+header{padding:18px 6%;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);position:sticky;top:0;background:#0b1020ee;backdrop-filter:blur(10px);z-index:5}
+.brand{font-weight:900;font-size:22px;letter-spacing:1px}.brand span{color:var(--accent)}
+nav{display:flex;gap:16px;flex-wrap:wrap}nav a{color:var(--muted);text-decoration:none;font-size:14px}
+button,.btn{border:0;border-radius:10px;padding:11px 15px;background:var(--accent);color:#07121b;font-weight:700;cursor:pointer}
+button.secondary{background:var(--panel2);color:var(--text);border:1px solid var(--line)}
+main{max-width:1100px;margin:auto;padding:30px 6% 70px}
+.hero{padding:55px 30px;border:1px solid var(--line);border-radius:22px;background:radial-gradient(circle at 85% 20%,#24534e 0,#182641 35%,#11192b 75%);margin:25px 0 35px}
+.eyebrow{color:var(--accent);font-size:12px;font-weight:800;letter-spacing:2px}.hero h1{font-size:clamp(34px,7vw,64px);line-height:1.05;margin:12px 0}.hero p{max-width:620px;color:var(--muted)}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:10px;margin:34px 0 14px}.section-head h2{margin:0}.muted{color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;min-height:145px}
+.card .symbol{font-size:26px}.card h3{margin:8px 0 5px}.card p{margin:0;color:var(--muted);font-size:14px}
+.post{display:flex;gap:14px;align-items:flex-start}.post img{width:92px;height:76px;object-fit:cover;border-radius:10px;background:var(--panel2)}
+footer{border-top:1px solid var(--line);padding:25px 6%;color:var(--muted);text-align:center}
+.modal{display:none;position:fixed;inset:0;background:#000b;z-index:10;overflow:auto;padding:20px}.modal.open{display:block}.dialog{max-width:760px;margin:35px auto;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:22px}
+input,textarea,select{width:100%;padding:11px;border-radius:9px;border:1px solid var(--line);background:#0c1425;color:var(--text);margin:5px 0 13px;font:inherit}
+textarea{min-height:90px;resize:vertical}label{font-size:13px;color:var(--muted)}.row{display:flex;gap:10px;flex-wrap:wrap}.row>*{flex:1}
+.admin-list{border-top:1px solid var(--line);margin-top:15px;padding-top:15px}.admin-item{padding:12px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:10px;align-items:center}
+.small{font-size:12px;color:var(--muted)}.hidden{display:none!important}
+@media(max-width:650px){header{align-items:flex-start;gap:12px;flex-direction:column}.hero{padding:35px 20px}.post img{width:75px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">POTVX<span>_IND</span></div>
+  <nav><a href="#about">About</a><a href="#sections">Explore</a><a href="#updates">Updates</a><a href="#jaunpur">Jaunpur</a></nav>
+  <button class="secondary" onclick="openLogin()">Admin Login</button>
+</header>
+<main>
+  <section class="hero">
+    <div class="eyebrow">OFFICIAL DIGITAL PLATFORM</div>
+    <h1>Create.<br>Innovate. Lead.</h1>
+    <p>Technology, podcasts, games, news and stories from Jaunpur — all in one place.</p>
+    <a class="btn" href="#sections" style="display:inline-block;text-decoration:none;margin-top:8px">Explore POTVX</a>
+  </section>
+  <section id="about">
+    <div class="section-head"><div><div class="eyebrow">WHO WE ARE</div><h2>About POTVX_IND</h2></div></div>
+    <div class="card"><h3>Founder: Ayush Yadav</h3><p id="aboutText">POTVX_IND is a growing digital platform exploring technology, creative media, gaming and local stories.</p></div>
+  </section>
+  <section id="sections">
+    <div class="section-head"><div><div class="eyebrow">DISCOVER</div><h2>Explore our world</h2></div></div>
+    <div class="grid" id="sectionGrid"></div>
+  </section>
+  <section id="updates">
+    <div class="section-head"><div><div class="eyebrow">LATEST</div><h2>News & Updates</h2></div></div>
+    <div class="grid" id="postGrid"></div>
+  </section>
+  <section id="jaunpur">
+    <div class="section-head"><div><div class="eyebrow">LOCAL STORIES</div><h2>Jaunpur Special</h2></div></div>
+    <div class="card"><h3>अपना Jaunpur, अपनी पहचान</h3><p class="muted">यहाँ Jaunpur की खबरें, जगहें, लोगों की कहानियाँ और स्थानीय अपडेट प्रकाशित किए जा सकते हैं।</p></div>
+  </section>
+</main>
+<footer>© <span id="year"></span> POTVX_IND · Founder: Ayush Yadav</footer>
+
+<div class="modal" id="loginModal"><div class="dialog" style="max-width:420px">
+  <div class="row"><h2>Admin Login</h2><button class="secondary" style="flex:0 0 auto" onclick="closeModal('loginModal')">Close</button></div>
+  <p class="muted">अपना admin PIN डालें।</p>
+  <label>Admin PIN</label><input id="pinInput" type="password" inputmode="numeric" placeholder="Enter PIN">
+  <button onclick="login()">Open Editing Portal</button><p id="loginError" class="small"></p>
+</div></div>
+
+<div class="modal" id="adminModal"><div class="dialog">
+  <div class="row"><div><div class="eyebrow">PRIVATE AREA</div><h2>Website Editing Portal</h2></div><button class="secondary" style="flex:0 0 auto" onclick="logout()">Logout</button></div>
+  <p class="small">यह शुरुआती demo portal है। बदलाव इसी browser में सेव होंगे।</p>
+  <div class="card">
+    <h3>Update About text</h3><textarea id="aboutInput"></textarea><button onclick="saveAbout()">Save About</button>
+  </div>
+  <div class="card" style="margin-top:14px">
+    <h3>Add a new section</h3>
+    <label>Section title</label><input id="sectionTitle" placeholder="e.g. POTVX Learning">
+    <label>Short description</label><input id="sectionDesc" placeholder="What is this section about?">
+    <label>Icon / emoji</label><input id="sectionIcon" placeholder="🚀">
+    <button onclick="addSection()">Add Section</button>
+  </div>
+  <div class="card" style="margin-top:14px">
+    <h3>Publish a post / news / podcast / game</h3>
+    <label>Post title</label><input id="postTitle" placeholder="Title">
+    <label>Category</label><select id="postCategory"><option>News</option><option>Podcast</option><option>Game</option><option>Jaunpur Special</option><option>Technology</option><option>Other</option></select>
+    <label>Description</label><textarea id="postDesc" placeholder="Write a short description"></textarea>
+    <label>Image (optional)</label><input id="postImage" type="file" accept="image/*">
+    <label>Content / game / video URL (optional)</label><input id="postUrl" type="url" placeholder="https://...">
+    <button onclick="addPost()">Publish Post</button>
+  </div>
+  <div class="admin-list"><h3>Manage content</h3><div id="manageList"></div></div>
+</div></div>
+
+<script>
+const DEFAULT_SECTIONS=[
+ {title:"POTVX Technology",desc:"AI, technology and digital innovation.",icon:"⚡"},
+ {title:"POTVX IN PODCAST",desc:"Conversations, interviews and ideas.",icon:"🎙️"},
+ {title:"POTVX Games",desc:"Games and projects created by POTVX.",icon:"🎮"},
+ {title:"News & Updates",desc:"Fresh updates and stories.",icon:"📰"},
+ {title:"Jaunpur Special",desc:"Local stories, places and community.",icon:"📍"}
+];
+const read=(k,f)=>{try{return JSON.parse(localStorage.getItem(k))??f}catch{return f}};
+let sections=read("potvx_sections",DEFAULT_SECTIONS),posts=read("potvx_posts",[]);
+const save=(k,v)=>localStorage.setItem(k,JSON.stringify(v));
+function render(){
+ document.getElementById("year").textContent=new Date().getFullYear();
+ document.getElementById("sectionGrid").innerHTML=sections.map(s=>`<article class="card"><div class="symbol">${esc(s.icon||"✦")}</div><h3>${esc(s.title)}</h3><p>${esc(s.desc)}</p></article>`).join("");
+ document.getElementById("postGrid").innerHTML=posts.length?posts.slice().reverse().map(p=>`<article class="card post">${p.image?`<img src="${p.image}" alt="">`:""}<div><div class="eyebrow">${esc(p.category)}</div><h3>${esc(p.title)}</h3><p>${esc(p.desc)}</p>${p.url?`<p style="margin-top:9px"><a href="${safeUrl(p.url)}" target="_blank" rel="noopener" style="color:var(--accent)">Open link ↗</a></p>`:""}</div></article>`).join(""):'<div class="card"><p class="muted">अभी कोई पोस्ट नहीं है। Admin Portal से पहली पोस्ट प्रकाशित करें।</p></div>';
+ document.getElementById("aboutInput").value=document.getElementById("aboutText").textContent;
+ renderManage();
+}
+function esc(v){return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+function safeUrl(v){try{let u=new URL(v);return ["http:","https:"].includes(u.protocol)?u.href:"#"}catch{return "#"}}
+function openLogin(){document.getElementById("loginModal").classList.add("open");document.getElementById("pinInput").focus()}
+function closeModal(id){document.getElementById(id).classList.remove("open")}
+function login(){if(document.getElementById("pinInput").value==="1212"){closeModal("loginModal");document.getElementById("adminModal").classList.add("open");document.getElementById("loginError").textContent="";render()}else{document.getElementById("loginError").textContent="PIN सही नहीं है।"}}
+function logout(){closeModal("adminModal");document.getElementById("pinInput").value=""}
+function saveAbout(){document.getElementById("aboutText").textContent=document.getElementById("aboutInput").value;localStorage.setItem("potvx_about",document.getElementById("aboutInput").value);alert("About section saved.");}
+function addSection(){let title=document.getElementById("sectionTitle").value.trim(),desc=document.getElementById("sectionDesc").value.trim(),icon=document.getElementById("sectionIcon").value.trim()||"✦";if(!title){alert("Section title लिखें।");return}sections.push({title,desc,icon});save("potvx_sections",sections);["sectionTitle","sectionDesc","sectionIcon"].forEach(id=>document.getElementById(id).value="");render()}
+function addPost(){let title=document.getElementById("postTitle").value.trim();if(!title){alert("Post title लिखें।");return}let file=document.getElementById("postImage").files[0];const finish=image=>{posts.push({id:Date.now(),title,category:document.getElementById("postCategory").value,desc:document.getElementById("postDesc").value,url:document.getElementById("postUrl").value,image});save("potvx_posts",posts);["postTitle","postDesc","postUrl","postImage"].forEach(id=>document.getElementById(id).value="");render();alert("Post published on this demo website.")};if(file){if(file.size>700000){alert("Demo के लिए 700 KB से छोटी image चुनें।");return}let r=new FileReader();r.onload=()=>finish(r.result);r.readAsDataURL(file)}else finish("")}
+function renderManage(){let el=document.getElementById("manageList");el.innerHTML=posts.length?posts.map(p=>`<div class="admin-item"><span><b>${esc(p.title)}</b><br><span class="small">${esc(p.category)}</span></span><button class="secondary" onclick="deletePost(${p.id})">Delete</button></div>`).join(""):'<p class="small">अभी कोई पोस्ट नहीं।</p>'}
+function deletePost(id){if(confirm("इस पोस्ट को हटाएँ?")){posts=posts.filter(p=>p.id!==id);save("potvx_posts",posts);render()}}
+const aboutSaved=localStorage.getItem("potvx_about");if(aboutSaved!==null)document.getElementById("aboutText").textContent=aboutSaved;
+render();
+</script>
+</body>
+</html>
